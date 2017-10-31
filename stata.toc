@@ -1,0 +1,5 @@
+v X.X.X.
+d 'conmtrx': module to provide confusion matrix and related statistics.
+d version and support from
+d https://github.com/adamrossnelson/conmtrx/ website
+p conmtrx
