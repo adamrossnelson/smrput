@@ -1,5 +1,5 @@
 v X.X.X.
-d 'conmtrx': module to provide confusion matrix and related statistics.
+d 'smrtbl': Module to export one- and two-way tables using docx.
 d version and support from
-d https://github.com/adamrossnelson/conmtrx/ website
-p conmtrx
+d https://github.com/adamrossnelson/smrput 
+p smrtbl
