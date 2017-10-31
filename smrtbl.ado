@@ -40,8 +40,8 @@ program smrtbl
 		putdocx text ("Column variable label: ")
 		putdocx text ("`coltitle'."), italic
 		putdocx table _`1'_`2'_table = (`totrows',`totcols')
-		levelsof dec`1', local(row_names)
-		levelsof dec`2', local(col_names)
+		qui levelsof dec`1', local(row_names)
+		qui levelsof dec`2', local(col_names)
 		local count = 2
 		qui foreach lev in `row_names' {
 			putdocx table _`1'_`2'_table(`count',1) = ("`lev'")
@@ -80,7 +80,7 @@ program smrtbl
 		putdocx text ("`rowtitle'."), italic
 		local totrows = `r(r)' + 1
 		putdocx table _`1'_table = (`totrows',2)
-		levelsof dec`1', local(row_names)
+		qui levelsof dec`1', local(row_names)
 		local count = 2
 		putdocx table _`1'_table(1,2) = ("Counts")
 		qui foreach lev in `row_names' {
