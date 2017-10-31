@@ -1,0 +1,8 @@
+d 'smrtble': Module to export one- and two-way tables using docx.
+d
+d Distribution-Date: November 2017
+d
+d Author:  Adam Ross Nelson
+d Support: https://github.com/adamrossnelson/smrput
+d
+f smrtbl.ado
