@@ -30,6 +30,11 @@ program smrtbl
 		tab dec`1' dec`2'
 		local totrows = `r(r)' + 1
 		local totcols = `r(c)' + 1
+		if `totrows' > 40 | `totcols' > 20 {
+			di in smcl as error "ERROR: smrtble supports a maximum of 40 rows and 20 columns. Reduce"
+			di in smcl as error "the number of categories before proceeding."
+			exit = 119
+		}
 		local rowtitle: variable label `1'
 		local coltitle: variable label `2'
 		putdocx paragraph
@@ -79,6 +84,11 @@ program smrtbl
 		putdocx text ("Row variable label: ")
 		putdocx text ("`rowtitle'."), italic
 		local totrows = `r(r)' + 1
+		if `totrows' > 40 {
+			di in smcl as error "ERROR: smrtble supports a maximum of 40 rows and 20 columns. Reduce"
+			di in smcl as error "the number of categories before proceeding."
+			exit = 119
+		}
 		putdocx table _`1'_table = (`totrows',2)
 		qui levelsof dec`1', local(row_names)
 		local count = 2
