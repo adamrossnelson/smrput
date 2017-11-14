@@ -21,11 +21,23 @@ program smrtbl
 	if `argcnt' == 2 {
 		capture decode `1', gen(dec`1')
 		if _rc {
-			gen str25 dec`1' = `1'			
+			capture confirm numeric variable `1'
+			if !_rc {
+				tostring `1', gen(dec`1')
+			}
+			else if _rc {
+				gen dec`1' = `1'
+			}
 		}
 		capture decode `2', gen(dec`2')
 		if _rc {
-			gen str25 dec`2' = `2'
+			capture confirm numerica variable `2'
+			if !_rc {
+				tostring `2', gen(dec`2')
+			}
+			else if _rc {
+				gen dec`2' = `2'
+			}
 		}
 		tab dec`1' dec`2'
 		local totrows = `r(r)' + 1
@@ -72,9 +84,15 @@ program smrtbl
 	}
 	/* Produce a one way table */
 	else if `argcnt' == 1 {
-    	capture decode `1', gen(dec`1')
+		capture decode `1', gen(dec`1')
 		if _rc {
-			gen str25 dec`1' = `1'
+			capture confirm numeric variable `1'
+			if !_rc {
+				tostring `1', gen(dec`1')
+			}
+			else if _rc {
+				gen dec`1' = `1'
+			}
 		}
 		tab dec`1'
 		local rowtitle: variable label `1'
