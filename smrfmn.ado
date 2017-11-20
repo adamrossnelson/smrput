@@ -1,6 +1,7 @@
+*! X.X.1 Adam Ross Nelson 20nov2017 // Merged smrfmn, smrcol, and smrtble to same package.
 *! X.X.X Adam Ross Nelson 19nov2017 // Original version
 *! Original author : Adam Ross Nelson
-*! Description     : Produces a putdocx table of means filtered by list of indicators.
+*! Description     : Produces a putdocx table of means filtered by list of indicators (through putdocx).
 *! Maintained at   : https://github.com/adamrossnelson/smrput
 
 capture program drop smrfmn

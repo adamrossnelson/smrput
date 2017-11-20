@@ -1,5 +1,7 @@
+*! X.X.1 Adam Ross Nelson 20nov2017 // Merged smrfmn, smrcol, and smrtble to same package.
 *! X.X.X Adam Ross Nelson 01nov2017 // Original version
 *! Original author : Adam Ross Nelson
+*! Description     : Produces one- or two-way tables (through putdocx).
 *! Maintained at   : https://github.com/adamrossnelson/smrput
 
 capture program drop smrtbl
