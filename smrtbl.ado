@@ -83,6 +83,7 @@ program smrtbl
 			local colstep = 2
 			local rowstep = `rowstep' + 1
 		}
+		di "smrtbl Two-way table production successful. Table named: _`1'_`2'_table"
 	}
 	/* Produce a one way table */
 	else if `argcnt' == 1 {
@@ -120,6 +121,7 @@ program smrtbl
 			putdocx table _`1'_table(`count',2) = ("`curcnt'")
 			local count = `count' + 1
 		}
+		di "smrtbl One-way table production successful. Table named: _`1'_table"
 	}
 	/* Provide user feedback if arguments incorectly specified */
 	else if `argcnt' > 2 {

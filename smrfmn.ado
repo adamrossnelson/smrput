@@ -16,7 +16,7 @@ program smrfmn
 		di in smcl as error "ERROR: No active docx."
 		exit = 119
 	}
-	sum `1'
+	qui sum `1'
 	if _rc {
 		di in smcl as error "ERROR: First argument must be numeric variable."
 		exit = 452
@@ -25,7 +25,7 @@ program smrfmn
 	local argcnt : word count `anything'
 	forvalues cntr = 2/`argcnt' {
 		local cntr = subinstr("``cntr''",",","",.)
-		sum `cntr'
+		qui sum `cntr'
 		capture assert `cntr' == 1 | `cntr' == 0 | `cntr' == .
 		if _rc {
 			di in smcl as error "ERROR: Inidcator variables must be numberic & binary."
@@ -51,30 +51,38 @@ program smrfmn
 	forvalues cntr = 2/`argcnt' {
 		local cntr = subinstr("``cntr''",",","",.)
 		local vardesc: variable label `cntr'
-		putdocx table filtered_means_of_`1'_table(`cntrow',1) = ("`vardesc'"), halign(center)
-		count if `cntr' == 1
-		putdocx table filtered_means_of_`1'_table(`cntrow',2) = (`r(N)'), halign(center)
-		sum `1' if `cntr' == 1, detail
-		putdocx table filtered_means_of_`1'_table(`cntrow',3) = ( ///
-		string(r(mean),"%-10.2f") +  ///
-		string(r(p50),"%-10.2f") + ///
-		string(r(sd),"%-10.2f")), halign(center)
-		putdocx table filtered_means_of_`1'_table(`cntrow',4) = ( ///
-		string(r(p25),"%-10.2f") + ///
-		string(r(p75),"%-10.2f")), halign(center)
-		sum `1' if `cntr' == 1 & (`1' >= r(p25) & `1' <= r(p75)), detail
-		putdocx table filtered_means_of_`1'_table(`cntrow',5) = ( ///
-		string(r(mean),"%-10.2f") + ///
-		string(r(p50),"%-10.2f") + ///
-		string(r(sd),"%-10.2f")), halign(center)
-		sum `1' if `cntr' == 1
-		putdocx table filtered_means_of_`1'_table(`cntrow',6) = ( ///
-		string(r(min),"%-10.2f") + ///
-		string(r(max),"%-10.2f")), halign(center)
-		local cntrow = `cntrow' + 1
+		// Handle variables with empty variable label.  If no label, provide generic.
+		if "`vardesc'" == "" {
+			local vardesc = "Varname: `cntr'"
+		}
+		qui {
+			putdocx table filtered_means_of_`1'_table(`cntrow',1) = ("`vardesc'"), halign(center)
+			count if `cntr' == 1
+			putdocx table filtered_means_of_`1'_table(`cntrow',2) = (`r(N)'), halign(center)
+			sum `1' if `cntr' == 1, detail
+			putdocx table filtered_means_of_`1'_table(`cntrow',3) = ( ///
+			string(r(mean),"%-10.2f") +  ///
+			string(r(p50),"%-10.2f") + ///
+			string(r(sd),"%-10.2f")), halign(center)
+			putdocx table filtered_means_of_`1'_table(`cntrow',4) = ( ///
+			string(r(p25),"%-10.2f") + ///
+			string(r(p75),"%-10.2f")), halign(center)
+			sum `1' if `cntr' == 1 & (`1' >= r(p25) & `1' <= r(p75)), detail
+			putdocx table filtered_means_of_`1'_table(`cntrow',5) = ( ///
+			string(r(mean),"%-10.2f") + ///
+			string(r(p50),"%-10.2f") + ///
+			string(r(sd),"%-10.2f")), halign(center)
+			sum `1' if `cntr' == 1
+			putdocx table filtered_means_of_`1'_table(`cntrow',6) = ( ///
+			string(r(min),"%-10.2f") + ///
+			string(r(max),"%-10.2f")), halign(center)
+			local cntrow = `cntrow' + 1
+		}
 	}
 	
 	restore
 	
+	di "smrfmn Table production successful. Table named: filtered_means_of_`1'_table"
+
 end
 
