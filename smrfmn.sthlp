@@ -54,4 +54,3 @@
 
 {phang}     Adam Ross Nelson{p_end}
 {phang}     {browse "https://github.com/adamrossnelson"}{p_end}
-{phang}     - This is a local copy - {p_end}
