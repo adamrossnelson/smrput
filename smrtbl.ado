@@ -1,4 +1,4 @@
-*! X.X.1 Adam Ross Nelson 20nov2017 // Merged smrfmn, smrcol, and smrtble to same package.
+*! X.X.1 Adam Ross Nelson 20nov2017 // Merged smrfmn, smrcol, and smrtbl to same package.
 *! X.X.X Adam Ross Nelson 01nov2017 // Original version
 *! Original author : Adam Ross Nelson
 *! Description     : Produces one- or two-way tables (through putdocx).
@@ -47,7 +47,7 @@ program smrtbl
 		if `totrows' > 55 | `totcols' > 20 {
 			di in smcl as error "ERROR: smrtble supports a maximum of 55 rows and 20 columns. Reduce"
 			di in smcl as error "the number of categories before proceeding."
-			exit = 119
+			exit = 452
 		}
 		local rowtitle: variable label `1'
 		local coltitle: variable label `2'
@@ -108,7 +108,7 @@ program smrtbl
 		if `totrows' > 55 {
 			di in smcl as error "ERROR: smrtble supports a maximum of 55 rows and 20 columns. Reduce"
 			di in smcl as error "the number of categories before proceeding."
-			exit = 119
+			exit = 452
 		}
 		putdocx table _`1'_table = (`totrows',2)
 		qui levelsof dec`1', local(row_names)

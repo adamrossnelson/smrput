@@ -1,7 +1,7 @@
-*! X.X.1 Adam Ross Nelson 20nov2017 // Merged smrfmn, smrcol, and smrtble to same package.
+*! X.X.1 Adam Ross Nelson 20nov2017 // Merged smrfmn, smrcol, and smrtbl to same package.
 *! X.X.X Adam Ross Nelson 05nov2017 // Original version
 *! Original author : Adam Ross Nelson
-*! Description     : Produces a putdocx table of indicator variable statistics (through putdocx).
+*! Description     : Produces table of indicator variable statistics (through putdocx).
 *! Maintained at   : https://github.com/adamrossnelson/smrput
 
 capture program drop smrcol
@@ -16,6 +16,12 @@ program smrcol
 		exit = 119
 	}
 	local argcnt : word count `anything'
+	
+	if `argcnt' < 1 {
+		di in smcl as error "ERROR: Argumnets incorrectly specified (too few). Must specify at least one indicator variable."
+		exit = 102
+	}
+
 	forvalues cntr = 1/`argcnt' {
 		local cntr = subinstr("``cntr''",",","",.)
 		qui sum `cntr'
@@ -27,7 +33,7 @@ program smrcol
 	}
 
 	preserve
-	
+
 	putdocx paragraph
 	putdocx text ("Table title: ")
 	putdocx text ("_`1'_`2'_table"), italic linebreak
