@@ -1,6 +1,6 @@
-d 'smrtble': Module to export one- and two-way tables using docx.
+d 'smrtbl': Command family that produces various tables for putdocx.
 d
-d Distribution-Date: November 2017
+d Distribution-Date: 21nov2017
 d
 d Author:  Adam Ross Nelson
 d Support: https://github.com/adamrossnelson/smrput
