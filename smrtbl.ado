@@ -33,7 +33,7 @@ program smrtbl
 		}
 		capture decode `2', gen(dec`2')
 		if _rc {
-			capture confirm numerica variable `2'
+			capture confirm numeric variable `2'
 			if !_rc {
 				tostring `2', gen(dec`2')
 			}
