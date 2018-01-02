@@ -1,3 +1,4 @@
+*! X.X.1 Adam Ross Nelson 01jan2018 // Added error checing for desc optoin.....
 *! X.X.1 Adam Ross Nelson 20nov2017 // Merged smrfmn, smrcol, and smrtbl to same package.
 *! X.X.X Adam Ross Nelson 19nov2017 // Original version
 *! Original author : Adam Ross Nelson
@@ -45,7 +46,9 @@ program smrfmn
 	putdocx text ("Table title: ")
 	putdocx text ("filtered_means_of_`1'_table"), italic linebreak
 	putdocx text ("Description: ")
-	// Add test for missing description value. If missing give generic.
+	if "`description'" == "" {
+		local description = "smrfmn generated _`1'_tbl"
+	}
 	putdocx text (`description')
 	local totrows = `argcnt'
 	putdocx table filt_means_`1'_tbl = (`totrows',6)
