@@ -1,13 +1,32 @@
 # Smart Put
 Repository for smrput (AKA "smart put" Stata packages) for use with putdocx. A family of commands that produces various tables through putdocx.
 
+** Also available from Boston College Statistical Software Components (SSC) :** `ssc install smrtbl`
+
 ## Introduction
 
-This package is inpsired by discussion on statalist.org. See for example: https://www.statalist.org/forums/forum/general-stata-discussion/general/1398211-putdocx-command?p=1416542#post1416542 and https://www.statalist.org/forums/forum/general-stata-discussion/general/1377169-how-to-export-stata-result-to-word-file.
+This package is inpsired by discussion on statalist.org. See for example: 
 
-`smrtbl` produces one- or two-way tables. `smrcol` produces a table of dummy varaibles and related summary statistics. `smrfmn` produces a table of summary statistics filtered by one or more indicator variables.
+https://www.statalist.org/forums/forum/general-stata-discussion/general/1398211-putdocx-command?p=1416542#post1416542 and
 
-## Installation
+https://www.statalist.org/forums/forum/general-stata-discussion/general/1377169-how-to-export-stata-result-to-word-file.
+
+## Table of available commands
+
+
+Command Name | Description
+-------------|------------
+`smrtbl` | produces one- or two-way tables. 
+`smrcol` | produces a table of dummy varaibles and related summary statistics. 
+`smrfmn` | produces a table of summary statistics filtered by one or more indicator variables.
+
+## Installation (Boston College Statistical Software Components (SSC))
+
+```Stata
+ssc install smrtbl
+```
+
+## Installation (From GitHub.com)
 
 ```Stata
 net install smrtbl, from(https://raw.githubusercontent.com/adamrossnelson/smrput/master/)
