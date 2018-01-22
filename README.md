@@ -7,9 +7,9 @@ Repository for smrput (AKA "smart put" Stata packages) for use with putdocx. A f
 
 This package is inpsired by discussion on statalist.org. See for example: 
 
-https://www.statalist.org/forums/forum/general-stata-discussion/general/1398211-putdocx-command?p=1416542#post1416542 and
+[https://www.statalist.org/for...post1416542](https://www.statalist.org/forums/forum/general-stata-discussion/general/1398211-putdocx-command?p=1416542#post1416542) and
 
-https://www.statalist.org/forums/forum/general-stata-discussion/general/1377169-how-to-export-stata-result-to-word-file.
+[https://www.statalist.org/for...stata-result-to-word-file](https://www.statalist.org/forums/forum/general-stata-discussion/general/1377169-how-to-export-stata-result-to-word-file).
 
 ## Table of available commands
 
