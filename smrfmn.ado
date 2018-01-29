@@ -1,4 +1,5 @@
-*! X.X.1 Adam Ross Nelson 01jan2018 // Added error checing for desc optoin.....
+*! X.X.1 Adam Ross Nelson 29jan2018 // Corrected type mismatch error.
+*! X.X.1 Adam Ross Nelson 01jan2018 // Added error checing for desc option.....
 *! X.X.1 Adam Ross Nelson 20nov2017 // Merged smrfmn, smrcol, and smrtbl to same package.
 *! X.X.X Adam Ross Nelson 19nov2017 // Original version
 *! Original author : Adam Ross Nelson
@@ -9,9 +10,9 @@ capture program drop smrfmn
 program smrfmn
 	
 	version 15
-	local opts [, DESCription(string asis)]
+	local opts [, DESCription(string)]
 	syntax anything(id="arglist") `opts'
-
+	
 	capture putdocx describe
 	if _rc {
 		di in smcl as error "ERROR: No active docx."
@@ -49,7 +50,7 @@ program smrfmn
 	if "`description'" == "" {
 		local description = "smrfmn generated _`1'_tbl"
 	}
-	putdocx text (`description')
+	putdocx text ("Description: `description'")
 	local totrows = `argcnt'
 	putdocx table filt_means_`1'_tbl = (`totrows',6)
 	putdocx table filt_means_`1'_tbl(1,2) = ("Ind = 1"), halign(center)

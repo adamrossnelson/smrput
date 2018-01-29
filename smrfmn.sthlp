@@ -47,7 +47,7 @@
 {phang}. // Demonstrate smrfmn. {p_end}
 {phang}{cmd:. smrfmn age race_ind1 white_grad race_ind2 black_grad race_ind3 other_grad, desc("Filtered descriptives of age.")}{p_end}
 
-{phang}{cmd:. putdocx save "smrtblDemo.docx"}{p_end}
+{phang}{cmd:. putdocx save "smrfmnDemo.docx"}{p_end}
 
 {marker author}
 {title:Author}

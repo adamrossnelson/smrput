@@ -54,7 +54,7 @@ Useful when reporting categorical counts which are not mutually exclusive. For e
 {phang}. // Demonstrate smrcol. {p_end}
 {phang}{cmd:. smrcol race_ind1 white_grad race_ind2 black_grad race_ind3 other_grad, desc("Race and graduate indicator descriptives.")}{p_end}
 
-{phang}{cmd:. putdocx save "smrtblDemo.docx"}{p_end}
+{phang}{cmd:. putdocx save "smrcolDemo.docx"}{p_end}
 
 {marker author}
 {title:Author}
