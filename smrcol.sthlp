@@ -3,13 +3,15 @@
 {title:Title}
 
 {phang}
-{bf:smrtbl} {hline 2} Produces a table of dummy varaibles and related summary statistics in an active docx using putdocx.
+{bf:smrcol} {hline 2} Produces a table of dummy varaibles and related summary statistics in an active docx using putdocx.
 
 {marker syntax}
 {title:Syntax}
 
 {p 8 17 2}
 {cmdab:smrcol} [{varlist}], desc("Optional descriptive table title")
+
+{p 8 17 2} Where [{varlist}] is one or more indicator variables.
 
 {marker description}
 {title:Description}
