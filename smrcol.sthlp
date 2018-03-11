@@ -17,13 +17,13 @@
 {synopthdr}
 {synoptline}
 {syntab:Main}
-{synopt:{opt desc:ription}}Provide a title for output display{p_end}
+{synopt:{opt desc:ription}}Provide a title for output display. Default behavior is to provide a generic title inferred from varlist.{p_end}
 
 {marker description}
 {title:Description}
 
 {pstd}
-{cmd:smrcol} produces a table of dummy varaibles and related summary statistics. For each dummy/indicator variable {cmd:smrcol} will generate a table that places the variable label in column one, the number of missing values in column two, the number that equal zero in column three, the number that equal one in column four, and the percent equaling one in column five.
+{cmd:smrcol} produces a table of dummy varaibles and related summary statistics. For each dummy/indicator variable {cmd:smrcol} will generate a table row that places the variable label in column one, the count of missing values in column two, the count that equal zero in column three, the count that equal one in column four, and the percent equaling one in column five.
 
 {pstd}
 Provides alternate format for displaying indicator variable summary statistics including indicator variable interaction results.

@@ -6,11 +6,26 @@
 *! Description     : Produces one- or two-way tables (through putdocx).
 *! Maintained at   : https://github.com/adamrossnelson/smrput
 
+capture program drop giveconditions
+program givconditions
+	syntax [if] [in] [, NOCond]
+	if "`nocond'" == "" {
+		if "`if'" != "" {
+			putdocx paragraph
+			putdocx text ("Filters and conditions : `if'"), italic linebreak
+		}
+		if "`in'" != "" {
+			putdocx paragraph
+			putdocx text ("Filters and conditions : `in'"), italic linebreak
+		}
+	}
+end
+
 capture program drop smrtbl
 program smrtbl
 	
 	version 15
-	syntax varlist(min=1 max=2) [if] [in] [, NUMLab]
+	syntax varlist(min=1 max=2) [if] [in] [, NUMLab NOCond]
 	
 	// Test for an active putdocx.
 	capture putdocx describe
@@ -80,6 +95,7 @@ program smrtbl
 		putdocx text ("`rowtitle'."), italic linebreak 
 		putdocx text ("Column variable label: ")
 		putdocx text ("`coltitle'."), italic
+		givconditions `if' `in', `nocond'
 		putdocx table _`prog_rowvar'_`prog_colvar'_table = (`totrows',`totcols')
 		qui levelsof dec`prog_rowvar', local(row_names)
 		qui levelsof dec`prog_colvar', local(col_names)
@@ -126,6 +142,7 @@ program smrtbl
 		putdocx text ("_`prog_rowvar'_table"), italic linebreak 
 		putdocx text ("Row variable label: ")
 		putdocx text ("`rowtitle'."), italic
+		givconditions `if' `in', `nocond'
 		local totrows = `r(r)' + 1
 		if `totrows' > 55 {
 			di in smcl as error "ERROR: smrtble supports a maximum of 55 rows and 20 columns. Reduce"

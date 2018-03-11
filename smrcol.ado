@@ -52,6 +52,14 @@ program smrcol
 		local description = "smrcol generated _smrcol_table"
 	}
 	putdocx text ("Description: `description'")
+	if "`if'" != "" {
+		putdocx paragraph
+		putdocx text ("Filters and conditions : `if'"), italic linebreak
+	}
+	if "`in'" != "" {
+		putdocx paragraph
+		putdocx text ("Filters and conditions : `in'"), italic linebreak
+	}
 	local totrows = `argcnt' + 1
 	putdocx table _smrcol_table = (`totrows',5)
 
@@ -81,6 +89,7 @@ program smrcol
 			local cntrow = `cntrow' + 1
 		}
 	}
+
 
 	restore
 

@@ -15,7 +15,8 @@
 {synopthdr}
 {synoptline}
 {syntab:Main}
-{synopt:{opt numl:ab}}Add variable label values to output display{p_end}
+{synopt:{opt numl:ab}}Add variable label values to output display. This option executes {cmd:numlabel, add} before producing output.{p_end}
+{synopt:{opt noc:ond}}Suppress output of {it:if} and {it:in} conditionals. Default behavior is to note each table with {it:if} and {it:in} conditionals applied.{p_end}
 
 {marker description}
 {title:Description}
