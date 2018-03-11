@@ -9,9 +9,15 @@
 {title:Syntax}
 
 {p 8 17 2}
-{cmdab:smrcol} [{varlist}], desc("Optional descriptive table title")
+{cmdab:smrcol} [{varlist}] [if] [in] [, options]
 
 {p 8 17 2} Where [{varlist}] is one or more indicator variables.
+
+{synoptset 16 tabbed}{...}
+{synopthdr}
+{synoptline}
+{syntab:Main}
+{synopt:{opt desc:ription}}Provide a title for output display{p_end}
 
 {marker description}
 {title:Description}
