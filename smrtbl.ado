@@ -1,5 +1,6 @@
-*! 2.0.0 Adam Ross Nelson 10mar2018 // Made ifable, inable, and byable.
-*! 1.0.1 Adam Ross Nelson 20nov2017 // Merged smrfmn, smrcol, and smrtbl to same package.
+*! 2.0.0 Adam Ross Nelson 10mar2018 // Made ifable, inable, and byable
+*!                                  // Added NUMLab option
+*! 1.0.1 Adam Ross Nelson 20nov2017 // Merged smrfmn, smrcol, and smrtbl to same package
 *! 1.0.0 Adam Ross Nelson 01nov2017 // Original version
 *! Original author : Adam Ross Nelson
 *! Description     : Produces one- or two-way tables (through putdocx).
@@ -26,6 +27,9 @@ program smrtbl
 		error 2000
 	}
 
+	local prog_rowvar : word 1 of `varlist'
+	local prog_colvar : word 2 of `varlist'
+
 	preserve
 	qui keep if `touse'	
 	local argcnt : word count `varlist'
@@ -36,30 +40,30 @@ program smrtbl
 
 	/* Produce a two way table */
 	if `argcnt' == 2 {
-		capture decode `1', gen(dec`1')
+		capture decode `prog_rowvar', gen(dec`prog_rowvar')
 		if _rc {
-			capture confirm numeric variable `1'
+			capture confirm numeric variable `prog_rowvar'
 			if !_rc {
-				di "tostring `1', gen(dec`1')"
-				tostring `1', gen(dec`1')
+				di "tostring `prog_rowvar', gen(dec`prog_rowvar')"
+				tostring `prog_rowvar', gen(dec`prog_rowvar')
 			}
 			else if _rc {
-				gen dec`1' = `1'
+				gen dec`prog_rowvar' = `prog_rowvar'
 			}
 		}
 		
-		capture decode `2', gen(dec`2')
+		capture decode `prog_colvar', gen(dec`prog_colvar')
 		if _rc {
-			capture confirm numeric variable `2'
+			capture confirm numeric variable `prog_colvar'
 			if !_rc {
-				tostring `2', gen(dec`2')
+				tostring `prog_colvar', gen(dec`prog_colvar')
 			}
 			else if _rc {
-				gen dec`2' = `2'
+				gen dec`prog_colvar' = `prog_colvar'
 			}
 		}
 		
-		tab dec`1' dec`2'
+		tab dec`prog_rowvar' dec`prog_colvar'
 		local totrows = `r(r)' + 1
 		local totcols = `r(c)' + 1
 		if `totrows' > 55 | `totcols' > 20 {
@@ -67,59 +71,59 @@ program smrtbl
 			di as error "Reduce the number of categories before proceeding."
 			exit = 452
 		}
-		local rowtitle: variable label `1'
-		local coltitle: variable label `2'
+		local rowtitle: variable label `prog_rowvar'
+		local coltitle: variable label `prog_colvar'
 		putdocx paragraph
 		putdocx text ("Table title: ")
-		putdocx text ("_`1'_`2'_table"), italic linebreak 
+		putdocx text ("_`prog_rowvar'_`prog_colvar'_table"), italic linebreak 
 		putdocx text ("Row variable label: ")
 		putdocx text ("`rowtitle'."), italic linebreak 
 		putdocx text ("Column variable label: ")
 		putdocx text ("`coltitle'."), italic
-		putdocx table _`1'_`2'_table = (`totrows',`totcols')
-		qui levelsof dec`1', local(row_names)
-		qui levelsof dec`2', local(col_names)
+		putdocx table _`prog_rowvar'_`prog_colvar'_table = (`totrows',`totcols')
+		qui levelsof dec`prog_rowvar', local(row_names)
+		qui levelsof dec`prog_colvar', local(col_names)
 		local count = 2
 		qui foreach lev in `row_names' {
-			putdocx table _`1'_`2'_table(`count',1) = ("`lev'")
+			putdocx table _`prog_rowvar'_`prog_colvar'_table(`count',1) = ("`lev'")
 			local ++count
 		}
 		local count = 2
 		qui foreach lev in `col_names' {
-			putdocx table _`1'_`2'_table(1,`count') = ("`lev'")
+			putdocx table _`prog_rowvar'_`prog_colvar'_table(1,`count') = ("`lev'")
 			local ++count
 		}
 		local rowstep = 2
 		local colstep = 2
 		qui foreach rlev in `row_names' {
 			foreach clev in `col_names' {
-				count if dec`1' == "`rlev'" & dec`2' == "`clev'"
+				count if dec`prog_rowvar' == "`rlev'" & dec`prog_colvar' == "`clev'"
 				local curcnt = `r(N)'
-				putdocx table _`1'_`2'_table(`rowstep',`colstep') = ("`curcnt'")
+				putdocx table _`prog_rowvar'_`prog_colvar'_table(`rowstep',`colstep') = ("`curcnt'")
 				local ++colstep
 			}
 			local colstep = 2
 			local ++rowstep
 		}
-		di "smrtbl Two-way table production successful. Table named: _`1'_`2'_table"
+		di "smrtbl Two-way table production successful. Table named: _`prog_rowvar'_`prog_colvar'_table"
 	}
 	/* Produce a one way table */
 	else if `argcnt' == 1 {
-		capture decode `1', gen(dec`1')
+		capture decode `prog_rowvar', gen(dec`prog_rowvar')
 		if _rc {
-			capture confirm numeric variable `1'
+			capture confirm numeric variable `prog_rowvar'
 			if !_rc {
-				tostring `1', gen(dec`1')
+				tostring `prog_rowvar', gen(dec`prog_rowvar')
 			}
 			else if _rc {
-				gen dec`1' = `1'
+				gen dec`prog_rowvar' = `prog_rowvar'
 			}
 		}
-		tab dec`1'
-		local rowtitle: variable label `1'
+		tab dec`prog_rowvar'
+		local rowtitle: variable label `prog_rowvar'
 		putdocx paragraph
 		putdocx text ("Table title: ")
-		putdocx text ("_`1'_table"), italic linebreak 
+		putdocx text ("_`prog_rowvar'_table"), italic linebreak 
 		putdocx text ("Row variable label: ")
 		putdocx text ("`rowtitle'."), italic
 		local totrows = `r(r)' + 1
@@ -128,18 +132,18 @@ program smrtbl
 			di in smcl as error "the number of categories before proceeding."
 			exit = 452
 		}
-		putdocx table _`1'_table = (`totrows',2)
-		qui levelsof dec`1', local(row_names)
+		putdocx table _`prog_rowvar'_table = (`totrows',2)
+		qui levelsof dec`prog_rowvar', local(row_names)
 		local count = 2
-		putdocx table _`1'_table(1,2) = ("Counts")
+		putdocx table _`prog_rowvar'_table(1,2) = ("Counts")
 		qui foreach lev in `row_names' {
-			putdocx table _`1'_table(`count',1) = ("`lev'")
-			count if dec`1' == "`lev'"
+			putdocx table _`prog_rowvar'_table(`count',1) = ("`lev'")
+			count if dec`prog_rowvar' == "`lev'"
 			local curcnt = `r(N)'
-			putdocx table _`1'_table(`count',2) = ("`curcnt'")
+			putdocx table _`prog_rowvar'_table(`count',2) = ("`curcnt'")
 			local ++count
 		}
-		di "smrtbl One-way table production successful. Table named: _`1'_table"
+		di "smrtbl One-way table production successful. Table named: _`prog_rowvar'_table"
 	}
 
 	restore
