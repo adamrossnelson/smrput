@@ -9,7 +9,7 @@
 {title:Syntax}
 
 {p 8 17 2}
-{cmdab:smrtbl} [{varlist}], [if] [in] [, options]
+{cmdab:smrtbl} [{varlist}] [if] [in] [, options]
 
 {synoptset 16 tabbed}{...}
 {synopthdr}
