@@ -8,8 +8,9 @@
 capture program drop smrcol
 program smrcol
 	version 15
-	syntax varlist(min=1 numeric) [if] [in] [, DESCription(string)]
+	syntax varlist(min=1 numeric) [if] [in] [, NOCond DESCription(string) TItle(string)]
 
+	// Test for an active putdocx.
 	capture putdocx describe
 	if _rc {
 		di in smcl as error "ERROR: No active docx."
@@ -25,8 +26,9 @@ program smrcol
 		error 2000
 	}
 
+	// Test that variables are binary 0 or 1.
 	foreach cntr in `varlist' {
-		capture assert `cntr' == 1 | `cntr' == 0
+		capture assert `cntr' == 1 | `cntr' == 0 | `cntr' == .
 		if _rc {
 			di as error "ERROR: Variables must be numberic & binary."
 			di as error "       `cntr' takes values other than 0 or 1"
@@ -46,20 +48,17 @@ program smrcol
 
 	putdocx paragraph
 	putdocx text ("Table title: ")
-	putdocx text ("_smrcol_table"), italic linebreak
+	// Test for missing title. If no title, provide generic.
+	if "`title'" == "" {
+		local title = "_smrcol_table"
+	}
+	putdocx text ("`title'"), italic linebreak
 	// Test for missing description. If no description, provide generic.
 	if "`description'" == "" {
-		local description = "smrcol generated _smrcol_table"
+		local description = "smrcol generated _smrcol_table varlist: `varlist'"
 	}
 	putdocx text ("Description: `description'")
-	if "`if'" != "" {
-		putdocx paragraph
-		putdocx text ("Filters and conditions : `if'"), italic linebreak
-	}
-	if "`in'" != "" {
-		putdocx paragraph
-		putdocx text ("Filters and conditions : `in'"), italic linebreak
-	}
+	smrgivconditions `if' `in', `nocond'
 	local totrows = `argcnt' + 1
 	putdocx table _smrcol_table = (`totrows',5)
 

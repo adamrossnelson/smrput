@@ -6,26 +6,12 @@
 *! Description     : Produces one- or two-way tables (through putdocx).
 *! Maintained at   : https://github.com/adamrossnelson/smrput
 
-capture program drop giveconditions
-program givconditions
-	syntax [if] [in] [, NOCond]
-	if "`nocond'" == "" {
-		if "`if'" != "" {
-			putdocx paragraph
-			putdocx text ("Filters and conditions : `if'"), italic linebreak
-		}
-		if "`in'" != "" {
-			putdocx paragraph
-			putdocx text ("Filters and conditions : `in'"), italic linebreak
-		}
-	}
-end
-
 capture program drop smrtbl
 program smrtbl
 	
 	version 15
-	syntax varlist(min=1 max=2) [if] [in] [, NUMLab NOCond]
+	syntax varlist(min=1 max=2) [if] [in] ///
+	[, NUMLab NOCond DESCription(string) TItle(string)]
 	
 	// Test for an active putdocx.
 	capture putdocx describe
@@ -46,6 +32,7 @@ program smrtbl
 	local prog_colvar : word 2 of `varlist'
 
 	preserve
+	
 	qui keep if `touse'	
 	local argcnt : word count `varlist'
 	
@@ -59,8 +46,7 @@ program smrtbl
 		if _rc {
 			capture confirm numeric variable `prog_rowvar'
 			if !_rc {
-				di "tostring `prog_rowvar', gen(dec`prog_rowvar')"
-				tostring `prog_rowvar', gen(dec`prog_rowvar')
+				qui tostring `prog_rowvar', gen(dec`prog_rowvar')
 			}
 			else if _rc {
 				gen dec`prog_rowvar' = `prog_rowvar'
@@ -71,7 +57,7 @@ program smrtbl
 		if _rc {
 			capture confirm numeric variable `prog_colvar'
 			if !_rc {
-				tostring `prog_colvar', gen(dec`prog_colvar')
+				qui tostring `prog_colvar', gen(dec`prog_colvar')
 			}
 			else if _rc {
 				gen dec`prog_colvar' = `prog_colvar'
@@ -90,12 +76,20 @@ program smrtbl
 		local coltitle: variable label `prog_colvar'
 		putdocx paragraph
 		putdocx text ("Table title: ")
-		putdocx text ("_`prog_rowvar'_`prog_colvar'_table"), italic linebreak 
+		// Test for missing title. If no title, provide generic.
+		if "`title'" == "" {
+			local title = "_`prog_rowvar'_`prog_colvar'_table"
+		}
+		if "`description'" == "" {
+			local description = "smrfmn generated _`1'_tbl varlist : `varlist'"
+		}
+		putdocx text ("Description: `description'"), linebreak
+		putdocx text ("`title'"), italic linebreak 
 		putdocx text ("Row variable label: ")
 		putdocx text ("`rowtitle'."), italic linebreak 
 		putdocx text ("Column variable label: ")
 		putdocx text ("`coltitle'."), italic
-		givconditions `if' `in', `nocond'
+		smrgivconditions `if' `in', `nocond'
 		putdocx table _`prog_rowvar'_`prog_colvar'_table = (`totrows',`totcols')
 		qui levelsof dec`prog_rowvar', local(row_names)
 		qui levelsof dec`prog_colvar', local(col_names)
@@ -121,7 +115,7 @@ program smrtbl
 			local colstep = 2
 			local ++rowstep
 		}
-		di "smrtbl Two-way table production successful. Table named: _`prog_rowvar'_`prog_colvar'_table"
+		di "smrtbl Two-way table production successful. Table named: `description'"
 	}
 	/* Produce a one way table */
 	else if `argcnt' == 1 {
@@ -129,7 +123,7 @@ program smrtbl
 		if _rc {
 			capture confirm numeric variable `prog_rowvar'
 			if !_rc {
-				tostring `prog_rowvar', gen(dec`prog_rowvar')
+				qui tostring `prog_rowvar', gen(dec`prog_rowvar')
 			}
 			else if _rc {
 				gen dec`prog_rowvar' = `prog_rowvar'
@@ -139,10 +133,14 @@ program smrtbl
 		local rowtitle: variable label `prog_rowvar'
 		putdocx paragraph
 		putdocx text ("Table title: ")
-		putdocx text ("_`prog_rowvar'_table"), italic linebreak 
+		// Test for missing description. If no description, provide generic.
+		if "`description'" == "" {
+			local description = "_`prog_rowvar'_`prog_colvar'_table"
+		}
+		putdocx text ("`description'"), italic linebreak 
 		putdocx text ("Row variable label: ")
 		putdocx text ("`rowtitle'."), italic
-		givconditions `if' `in', `nocond'
+		smrgivconditions `if' `in', `nocond'
 		local totrows = `r(r)' + 1
 		if `totrows' > 55 {
 			di in smcl as error "ERROR: smrtble supports a maximum of 55 rows and 20 columns. Reduce"
@@ -160,8 +158,9 @@ program smrtbl
 			putdocx table _`prog_rowvar'_table(`count',2) = ("`curcnt'")
 			local ++count
 		}
-		di "smrtbl One-way table production successful. Table named: _`prog_rowvar'_table"
+		di "smrtbl One-way table production successful. Table named: `description'"
 	}
+
 
 	restore
 
