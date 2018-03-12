@@ -88,7 +88,3 @@ smrtbl agegrp sex
     // Save word docx file.
 putdocx save "GitHub.docx", replace
 ```
-
-## Known limitations
-
-Does not support `if` or `in` statements.
