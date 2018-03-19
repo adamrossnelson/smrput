@@ -1,12 +1,12 @@
 # 1. Smart Put
 Repository for smrput (AKA "smart put" Stata packages) for use with putdocx. A family of commands that produces various tables through putdocx.
 
-**Also available from Boston College Statistical Software Components (SSC) :** `ssc install smrtbl`
+**Version 1.0 available from Boston College Statistical Software Components (SSC) :** `ssc install smrtbl`
 
-**Version 2.0 (beta) available as of March 11, 2018 from this repo.**
-*After further testing, will push to ssc*
-*Version 2.0 is "ifable" and "inable"*
-*Version 2.0 also includes added options"
+**Version 2.0 (beta) available as of March 11, 2018 from this repo.**  
+*After further testing, will push to ssc*  
+*Version 2.0 is "ifable" and "inable"*  
+*Version 2.0 also includes added options*
 
 ## 1.1. Table of Contents
 <!-- TOC -->
@@ -20,6 +20,7 @@ Repository for smrput (AKA "smart put" Stata packages) for use with putdocx. A f
     - [2.2. From GitHub.com](#22-from-githubcom)
 - [3. Example](#3-example)
 - [4. Known limitations](#4-known-limitations)
+- [5. See Also](#5-see-also)
 
 <!-- /TOC -->
 ## 1.2. Introduction
@@ -113,3 +114,7 @@ putdocx save "GitHub.docx", replace
 Version 1.0.0 did/does does not support `if` or `in` options.
 Version 2.0.0 supports `if` and `in` options.
 
+# 5. See Also
+
+PUTDOCXFREQTABLE: Stata module to produce frequency oneway tables with putdocx.  
+https://ideas.repec.org/c/boc/bocode/s458464.html
