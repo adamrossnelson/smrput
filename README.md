@@ -1,12 +1,28 @@
-# Smart Put
+# 1. Smart Put
 Repository for smrput (AKA "smart put" Stata packages) for use with putdocx. A family of commands that produces various tables through putdocx.
 
 **Also available from Boston College Statistical Software Components (SSC) :** `ssc install smrtbl`
 
 **Version 2.0 (beta) available as of March 11, 2018 from this repo.**
 *After further testing, will push to ssc*
+*Version 2.0 is "ifable" and "inable"*
+*Version 2.0 also includes added options"
 
-## Introduction
+## 1.1. Table of Contents
+<!-- TOC -->
+
+- [1. Smart Put](#1-smart-put)
+    - [1.1. Table of Contents](#11-table-of-contents)
+    - [1.2. Introduction](#12-introduction)
+    - [1.3. Table of available commands](#13-table-of-available-commands)
+- [2. Installation](#2-installation)
+    - [2.1. Boston College Statistical Software Components (SSC)](#21-boston-college-statistical-software-components-ssc)
+    - [2.2. From GitHub.com](#22-from-githubcom)
+- [3. Example](#3-example)
+- [4. Known limitations](#4-known-limitations)
+
+<!-- /TOC -->
+## 1.2. Introduction
 
 This package is inpsired by discussion on statalist.org. See for example: 
 
@@ -14,7 +30,7 @@ This package is inpsired by discussion on statalist.org. See for example:
 
 [https://www.statalist.org/for...stata-result-to-word-file](https://www.statalist.org/forums/forum/general-stata-discussion/general/1377169-how-to-export-stata-result-to-word-file).
 
-## Table of available commands
+## 1.3. Table of available commands
 
 
 Command Name | Description
@@ -23,13 +39,17 @@ Command Name | Description
 `smrcol` | produces a table of dummy varaibles and related summary statistics. 
 `smrfmn` | produces a table of summary statistics filtered by one or more indicator variables.
 
-## Installation (Boston College Statistical Software Components (SSC))
+# 2. Installation
+
+## 2.1. Boston College Statistical Software Components (SSC)
 
 ```Stata
 ssc install smrtbl
 ```
 
-## Installation (From GitHub.com)
+## 2.2. From GitHub.com
+
+Installing from GitHub.com will install the most recent development version.
 
 ```Stata
 net install smrtbl, from(https://raw.githubusercontent.com/adamrossnelson/smrput/master/)
@@ -37,7 +57,7 @@ net install smrtbl, from(https://raw.githubusercontent.com/adamrossnelson/smrput
 
 Upon installation command help and documenation available by `help smrtbl`, `help smrcol`, and/or `help smrfmn`.
 
-## Example
+# 3. Example
 
 The following is a self contained example using smrtble.
 
@@ -89,6 +109,7 @@ smrtbl agegrp sex
 putdocx save "GitHub.docx", replace
 ```
 
-## Known limitations
+# 4. Known limitations
 
-Does not support `if` or `in` statements.
+Version 1.0.0 did/does does not support `if` or `in` options.
+Version 2.0.0 supports `if` and `in` options.
