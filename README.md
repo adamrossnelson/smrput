@@ -108,8 +108,8 @@ smrtbl agegrp sex
     // Save word docx file.
 putdocx save "GitHub.docx", replace
 ```
-
 # 4. Known limitations
 
 Version 1.0.0 did/does does not support `if` or `in` options.
 Version 2.0.0 supports `if` and `in` options.
+
