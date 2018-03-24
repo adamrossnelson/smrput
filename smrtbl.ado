@@ -21,7 +21,7 @@ program smrtbl
 	}
 
 	// Test that subsample with temp var touse is not empty.
-	marksample touse
+	marksample touse, strok
 	quietly count if `touse'
 	if `r(N)' == 0 {
 		di as error "ERROR: No observations after if or in qualifier."
