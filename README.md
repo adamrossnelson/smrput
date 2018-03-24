@@ -39,8 +39,8 @@ This package is inpsired by discussion on statalist.org. See for example:
 
 Command Name | Description
 -------------|------------
-`smrtbl` | produces one- or two-way tables. 
-`smrcol` | produces a table of dummy varaibles and related summary statistics. 
+`smrtbl` | produces one- or two-way tables.
+`smrcol` | produces a table of dummy varaibles and related summary statistics.
 `smrfmn` | produces a table of summary statistics filtered by one or more indicator variables.
 
 # 2. Installation
