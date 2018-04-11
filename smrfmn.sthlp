@@ -27,6 +27,9 @@
 {pstd}
 {cmd:smrfmn} produces a table of summary statistics filtered by one or more indicator variables. For each dummy/indicator variable {cmd:smrfmn} will generate a table row of statistics filtered by that indicator. {cmd:smrfmn} places the indicator variable label (or variable name) in column one, the number of observations where the indicator is equal to 1 in column two, the mean meadian and standard deviation in column three, the 25th and 75th percential in column four, the trimmed mean, median, and standard deviation in column five, and the overall minumum and maximum in column six.
 
+{pstd}
+When an if or in condition is specified {cmd:smrtbl} will report that condition in the putdocx.
+
 {marker example}
 {title:Example}
 

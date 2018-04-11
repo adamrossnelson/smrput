@@ -30,6 +30,9 @@
 {pstd}
 Provides alternate format for displaying indicator variable summary statistics including indicator variable interaction results.
 
+{pstd}
+When an if or in condition is specified {cmd:smrtbl} will report that condition in the putdocx.
+
 {marker usecase}
 {title:Use Case}
 
