@@ -1,5 +1,4 @@
-*! 2.0.0 Adam Ross Nelson 10mar2018 // Made ifable, inable, and byable
-*!                                  // Added NUMLab option
+*! 2.0.0 Adam Ross Nelson 10mar2018 // Made ifable, inable, byable, added NUMLab option.
 *! 1.0.1 Adam Ross Nelson 20nov2017 // Merged smrfmn, smrcol, and smrtbl to same package
 *! 1.0.0 Adam Ross Nelson 01nov2017 // Original version
 *! Original author : Adam Ross Nelson

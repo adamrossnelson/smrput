@@ -1,6 +1,6 @@
-*! 2.0.0 Adam Ross Nelson 10mar2018 // Made ifable, inable, and byable
+*! 2.0.0 Adam Ross Nelson 10mar2018 // Made ifable, inable, and byable.
 *! 1.0.1 Adam Ross Nelson 20nov2017 // Merged smrfmn, smrcol, and smrtbl to same package.
-*! 1.0.0 Adam Ross Nelson 05nov2017 // Original version
+*! 1.0.0 Adam Ross Nelson 05nov2017 // Original version.
 *! Original author : Adam Ross Nelson
 *! Description     : Produces table of indicator variable statistics (through putdocx).
 *! Maintained at   : https://github.com/adamrossnelson/smrput

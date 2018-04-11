@@ -1,8 +1,8 @@
-*! 2.0.0 Adam Ross Nelson 10mar2018 // Made ifable, inable, and byable
+*! 2.0.0 Adam Ross Nelson 10mar2018 // Made ifable, inable, and byable.
 *! 1.0.3 Adam Ross Nelson 29jan2018 // Corrected type mismatch error.
 *! 1.0.2 Adam Ross Nelson 01jan2018 // Added error checing for desc option.....
 *! 1.0.1 Adam Ross Nelson 20nov2017 // Merged smrfmn, smrcol, and smrtbl to same package.
-*! 1.0.0 Adam Ross Nelson 19nov2017 // Original version
+*! 1.0.0 Adam Ross Nelson 19nov2017 // Original version.
 *! Original author : Adam Ross Nelson
 *! Description     : Produces table of means filtered by list of indicators (through putdocx).
 *! Maintained at   : https://github.com/adamrossnelson/smrput
