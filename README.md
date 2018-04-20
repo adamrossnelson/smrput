@@ -1,11 +1,11 @@
 # 1. Smart Put
 Repository for smrput (AKA "smart put" Stata packages) for use with putdocx. A family of commands that produces various tables through putdocx.
 
-**Version 1.0 available from Boston College Statistical Software Components (SSC) :**
+**Version 2.0 available as of April 20th, 2018 from Boston College Statistical Software Components (SSC) :** 
 
 `ssc install smrtbl`
 
-**Version 2.0 (beta) available as of March 11, 2018 from this repo :** 
+**Production Version available from this repo :**
 
 `net install smrtbl, from(https://raw.githubusercontent.com/adamrossnelson/smrput/master/)`  
 
