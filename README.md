@@ -1,5 +1,5 @@
 # 1. Smart Put
-Repository for smrput (AKA "smart put" Stata packages) for use with putdocx. A family of commands that produces various tables through putdocx.
+Repository for smrput (AKA "smart put" Stata packages) for use with putdocx. A family of commands that produces various tables through `putdocx`.
 
 **Version 2.0 available as of April 20th, 2018 from Boston College Statistical Software Components (SSC) :** 
 
@@ -17,7 +17,7 @@ Repository for smrput (AKA "smart put" Stata packages) for use with putdocx. A f
 - [1. Smart Put](#1-smart-put)
     - [1.1. Table of Contents](#11-table-of-contents)
     - [1.2. Introduction](#12-introduction)
-    - [1.3. Table of available commands](#13-table-of-available-commands)
+    - [1.3. Table of commands](#13-table-of-available-commands)
 - [2. Installation](#2-installation)
     - [2.1. Boston College Statistical Software Components (SSC)](#21-boston-college-statistical-software-components-ssc)
     - [2.2. From GitHub.com](#22-from-githubcom)
@@ -28,13 +28,13 @@ Repository for smrput (AKA "smart put" Stata packages) for use with putdocx. A f
 <!-- /TOC -->
 ## 1.2. Introduction
 
-This package is inpsired by discussion on statalist.org. See for example: 
+A conversation on statalist.org inspired this package: 
 
 [https://www.statalist.org/for...post1416542](https://www.statalist.org/forums/forum/general-stata-discussion/general/1398211-putdocx-command?p=1416542#post1416542) and
 
 [https://www.statalist.org/for...stata-result-to-word-file](https://www.statalist.org/forums/forum/general-stata-discussion/general/1377169-how-to-export-stata-result-to-word-file).
 
-## 1.3. Table of available commands
+## 1.3. Table of commands
 
 
 Command Name | Description
@@ -63,7 +63,7 @@ Upon installation command help and documenation available by `help smrtbl`, `hel
 
 # 3. Example
 
-The following is a self contained example using smrtble.
+The following is a self-contained example using `smrtble`.
 
 ```Stata
 clear all
@@ -112,7 +112,7 @@ smrtbl agegrp sex
     // Save word docx file.
 putdocx save "GitHub.docx", replace
 ```
-# 4. Known limitations
+# 4. Dev Log, Known limitations
 
 Version 1.0.0 did/does does not support `if` or `in` options.  
 Version 2.0.0 now supports `if` and `in` options.
